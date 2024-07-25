@@ -6,11 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $department = $_POST['department'];
+    $job_title = $_POST['job_title'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO users (username, email, department, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $username, $email, $department, $password);
+    $stmt = $conn->prepare("INSERT INTO users (username, email, department, job_title, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $username, $email, $department, $job_title, $password);
 
     // Execute the statement
     if ($stmt->execute()) {

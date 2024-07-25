@@ -24,38 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             case 'Registry clerks':
                 header("Location: departments/registry_clerks.php");
                 break;
-            case 'Human Resource officers':
-                header("Location: departments/human_resource_officers.php");
-                break;
             case 'Chief Administrator':
                 header("Location: admin/edit_user.php");
                 break;
-            case 'Director Human Resources and Administration':
-                header("Location: departments/director_human_resources_and_administration.php");
-                break;
-            case 'Deputy Director Human Resources':
-                header("Location: departments/deputy_director_human_resources.php");
-                break;
-            case 'Chief Human Resource Management officer':
-                header("Location: departments/chief_human_resource_management_officer.php");
-                break;
-            case 'Senior Human Resource officers':
-                header("Location: departments/senior_human_resource_officers.php");
-                break;
-            case 'Chief accountant':
-                header("Location: departments/chief_accountant.php");
-                break;
-            case 'Principal accountant':
-                header("Location: departments/principal_accountant.php");
-                break;
-            case 'Senior Accountant':
-                header("Location: departments/senior_accountant.php");
+            case 'Human Resource':
+                header("Location: departments/human_resource.php");
                 break;
             case 'Accountants':
                 header("Location: departments/accountants.php");
                 break;
             default:
-                header("Location: index.php");
+                header("Location: logout.php");
         }
         exit();
     } else {

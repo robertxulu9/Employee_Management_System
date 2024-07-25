@@ -15,18 +15,15 @@
         <div class="form-group">
             <label for="department">Department:</label>
             <select class="form-control" id="department" name="department" required>
-                <option value="Registry clerks">Registry clerks</option>
-                <option value="Human Resource officers">Human Resource officers</option>
-                <option value="Chief Administrator">Chief Administrator</option>
-                <option value="Director Human Resources and Administration">Director Human Resources and Administration</option>
-                <option value="Deputy Director Human Resources">Deputy Director Human Resources</option>
-                <option value="Chief Human Resource Management officer">Chief Human Resource Management officer</option>
-                <option value="Senior Human Resource officers">Senior Human Resource officers</option>
-                <option value="Chief accountant">Chief accountant</option>
-                <option value="Principal accountant">Principal accountant</option>
-                <option value="Senior Accountant">Senior Accountant</option>
+                <option value="Registry clerks">Registry clerk</option>
+                <option value="Human Resource">Human Resource</option>
                 <option value="Accountants">Accountants</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="department">Job Title:</label>
+            <input type="text" class="form-control" id="job_title" name="job_title" required>
+            
         </div>
         <div class="form-group">
             <label for="password">Default Password:</label>
