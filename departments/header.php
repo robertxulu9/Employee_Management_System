@@ -16,6 +16,7 @@ session_start();
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -79,6 +80,11 @@ session_start();
                                         <a class="nav-link" href="employee_list.php">
                                             <div class="sb-nav-link-icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
                                             Employee List
+                                        </a>
+
+                                        <a class="nav-link" href="form.php">
+                                            <div class="sb-nav-link-icon"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
+                                            Forms
                                         </a>
                                         <?php
                                         break;

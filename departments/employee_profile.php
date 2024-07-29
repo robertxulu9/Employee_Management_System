@@ -5,6 +5,9 @@ if (!isset($_GET['id'])) {
     die("Invalid request.");
 }
 
+// $user_id = $_SESSION['user_id'];
+$employee_id = $_GET['id']; // Assuming employee_id is passed as a GET parameter
+
 $employee_id = $_GET['id'];
 $query = "SELECT * FROM employees WHERE employee_id = ?";
 $stmt = $conn->prepare($query);
@@ -24,7 +27,7 @@ $date_of_hire = new DateTime($employee['date_of_hire']);
 $interval = $date_of_hire->diff($current_date);
 $total_months = ($interval->y * 12) + $interval->m;
 $total_leave_days = $total_months * 2;
-$available_leave_days = $total_leave_days - $employee['used_leave_days'];
+
 
 // Handle leave approval
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['approve_leave'])) {
@@ -69,6 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_info'])) {
     $update_stmt->bind_param("ssssssss", $phone_number, $email_address, $job_title, $department, $marital_status, $address, $salary_wage, $employee_id);
     $update_stmt->execute();
 }
+// Fetch loan information
+$query = "SELECT * FROM loans WHERE employee_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $employee['id']);
+$stmt->execute();
+$loan_result = $stmt->get_result();
+$loan = $loan_result->fetch_assoc();
+?>
 
 ?>
 
@@ -121,15 +132,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_info'])) {
                 </div>
                 <div class="card-body">
                     <p><strong>Leave Status:</strong> <?php echo htmlspecialchars($employee['leave_status']); ?></p>
-                    <p><strong>Used Leave Days:</strong> <?php echo htmlspecialchars($employee['used_leave_days']); ?></p>
-                    <p><strong>Available Leave Days:</strong> <?php echo htmlspecialchars($available_leave_days); ?></p>
-                    
+                    <p><strong>Leave Days:</strong> <?php echo htmlspecialchars($employee['leave_days']); ?></p>                    
                     <?php if ($employee['gender'] == 'Female'): ?>
                         <p><strong>Maternity Leave Days:</strong> <?php echo htmlspecialchars($employee['maternity_leave_days']); ?></p>
                         <p><strong>On Maternity Leave:</strong> <?php echo htmlspecialchars($employee['on_maternity_leave']); ?></p>
                     <?php endif; ?>
                 </div>
             </div>
+            <!-- Loan Information Card -->
+            <div class="card mb-4">
+                    <div class="card-header">Loan Information</div>
+                    <div class="card-body">
+                        <?php if ($loan): ?>
+                            <p><strong>Loan Amount:</strong> <?php echo htmlspecialchars($loan['amount']); ?></p>
+                            <p><strong>Loan Status:</strong> <?php echo htmlspecialchars($loan['status']); ?></p>
+                        <?php else: ?>
+                            <p>No loan information available.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             <?php if ($department === 'Human Resource'): ?>
             <div class="card mb-3">
                 <div class="card-header">
@@ -145,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_info'])) {
                     </form>
                 </div>
             </div>
+            
 
             <?php if ($employee['gender'] == 'Female'): ?>
                 <div class="card mb-3">
@@ -165,6 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_info'])) {
         </div>
     </div>
 
+    
 
         <div class="card mb-3">
             <div class="card-header">

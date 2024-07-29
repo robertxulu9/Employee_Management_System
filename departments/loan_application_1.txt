@@ -1,0 +1,4 @@
+Employee ID: 5887687686867
+Employee Name: Robert Zulu
+Loan Amount: 102
+Payment Method: 75% of salary per month
